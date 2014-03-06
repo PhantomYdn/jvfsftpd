@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Main element of jvfsftpd config file-->
+<!ELEMENT ftpd (bind, port, security-domain?, use-users?, default, user*)>
+<!--Address to bind to. For example: 0.0.0.0 -->
+<!ELEMENT bind (#PCDATA)>
+<!-- Port of the FTP server. By default is 21-->
+<!ELEMENT port (#PCDATA)>
+<!-- Name of the security domain if you use JAAS-->
+<!ELEMENT security-domain (#PCDATA)>
+<!-- Should JVFSFTPd use config of users in this file as set of users for JAAS?
+       In this case JVFSFTPd append new JAAS Configuration to the system one-->
+<!ELEMENT use-users (#PCDATA)>
+<!-- Element 'default' contain default configuration for users -->
+<!ELEMENT default (basedir, initialdir?, bandwidth?)>
+<!-- Element user define specific configuration for specified user-->
+<!ELEMENT user (basedir, initialdir?, bandwidth?)>
+<!-- 
+name - username
+password - if users configuration used as userset (see 'use-users') specified password for the user
+-->
+<!ATTLIST user
+	name CDATA #REQUIRED
+	password CDATA #IMPLIED
+>
+<!-- Root directory. Used in 'default' and 'user' -->
+<!ELEMENT basedir (#PCDATA)>
+<!-- Initial directory where user placed initialy. Must be under basedir. Used in 'default' and 'user' -->
+<!ELEMENT initialdir (#PCDATA)>
+<!-- Bandwidth configuration-->
+<!ELEMENT bandwidth (input?, output?)>
+<!-- Input rate-->
+<!ELEMENT input (#PCDATA)>
+<!-- Output rate-->
+<!ELEMENT output (#PCDATA)>
